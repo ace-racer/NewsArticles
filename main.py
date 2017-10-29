@@ -1,5 +1,9 @@
 import utility
 import http_requests_processor
+import http_response_processors
 import configurations
 import apikeys
 
+
+news_articles_url = utility.replace_placeholders_in_string(configurations.news_articles_base_url, [configurations.new_provider_source, apikeys.news_api_key])
+http_requests_processor.perform_get_request(news_articles_url, http_response_processors.create_table_from_news_api_response)
