@@ -1,3 +1,6 @@
+# sensitive files which need not be under source control
+apikeys.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
