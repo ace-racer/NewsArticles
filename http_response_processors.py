@@ -25,3 +25,4 @@ def create_table_from_news_api_response(news_api_response):
                     r.td(article[news_article_detail])
 
             utility.write_text_to_file(str(t))
+            utility.open_file_path_in_browser(configurations.output_file_location)
