@@ -1,14 +1,22 @@
 import os
 import webbrowser
 import constants
+import re
 
 
 def replace_placeholders_in_string(string_with_placeholders, placeholder_replacements):
     """Replace placeholders of the type {X} with the X element in the array"""
+    number_of_placeholder_replacements = len(placeholder_replacements)
+    placeholder_pattern_groups = re.findall(constants.placeholders_regex, string_with_placeholders)
+    placeholder_pattern_groups_count = len(placeholder_pattern_groups)
+    if placeholder_pattern_groups_count != number_of_placeholder_replacements:
+        raise ValueError()
+    if placeholder_pattern_groups[0] != "{0}":
+        raise IndexError()
     string_with_placeholders_replaced = string_with_placeholders
     for ctr in range(len(placeholder_replacements)):
-        string_with_placeholders_replaced = string_with_placeholders_replaced.replace("{" + str(ctr) + "}", placeholder_replacements[ctr])
-
+        string_with_placeholders_replaced = string_with_placeholders_replaced.replace("{" + str(ctr) + "}",
+                                                                                      placeholder_replacements[ctr])
     return string_with_placeholders_replaced
 
 
